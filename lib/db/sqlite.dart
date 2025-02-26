@@ -38,4 +38,15 @@ class Sqlite{
           },
     ).toList();
   }
+
+  static Future<int> add(List<Planets> planets) async{
+    final iguana.Database db = await Sqlite.db(); //abrir base
+    int? error;
+    for(Planets p in planets){
+      error = await db.insert("planetas", p.toMap(),
+          conflictAlgorithm: iguana.ConflictAlgorithm.replace);
+    }
+    db.close();
+    return error!;
+  }
 }

@@ -16,11 +16,11 @@ class Planets{
   Planets(this.id, this.name, this.sunDistance, this.radio, this.moons);
 
   Planets.deMap(Map<String, dynamic> map){
-    id = map["id"];
-    moons = map["moons"];
-    name = map["name"];
+    id =          map["id"];
+    moons =       map["moons"];
+    name =        map["name"];
     sunDistance = map["sunDistance"];
-    radio = map["radio"];
+    radio =       map["radio"];
   }
   Map<String, dynamic> toMap(){
     return{
