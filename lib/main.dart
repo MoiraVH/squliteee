@@ -5,9 +5,13 @@ import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 import 'package:sqlite/widgets/app.dart';
 
 void main() {
+
   // en windows instalar sqlite con choco
+
+  sqfliteFfiInit();
+
   if (!kIsWeb){
-    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
   } else {
     databaseFactory = databaseFactoryFfiWeb;
   }
