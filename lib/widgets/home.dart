@@ -43,13 +43,20 @@ class _HomeState extends State<Home> {
             return ListView.builder(
                 itemCount: planetario!.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 1,
-                    child: CupertinoListTile(
-                      leading: const Icon(CupertinoIcons.circle),
-                      title: Text(planetario![index].name!),
-                      subtitle: Text("Lunas: ${planetario![index].moons!}"),
-                    ),
+                  return InkWell(
+                    focusColor: Colors.lime,
+                      hoverColor: Colors.lightGreen,
+                      child: Card(
+                        elevation: 1,
+                        child: CupertinoListTile(
+                          leading: const  Icon(CupertinoIcons.circle),
+                          title: Text(planetario![index].name!),
+                          subtitle: Text("Lunas: ${planetario![index].moons!}"),
+                          onTap: () {
+                            remove(planetario![index].id!);
+                          },
+                        ),
+                      )
                   );
                 }
             );
@@ -87,5 +94,14 @@ class _HomeState extends State<Home> {
     await Sqlite.add(planets);
 
 
+  }
+
+  Future<void> remove(int index) async{
+    await Sqlite.del(index).whenComplete(() {
+      consultar();
+      setState(() {
+
+      });
+    });
   }
 }
